@@ -65,16 +65,16 @@ var subt=window.orientation ? 20  : 30;
   ctx.closePath();  ctx.stroke();
   ctx.beginPath(); ctx.moveTo(el.width*0.02,el.height*0.02);ctx.lineTo(el.width*0.35,el.height*0.02);
   ctx.closePath(); ctx.stroke();
-  drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
+ // drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
   drawText(msgs[index-1].substring(1), subt, "nrm", "#fff", 20, tc.height*0.675);
 //media keys
-var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
+/*var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
   //right
   drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
   //left
   drawCircle(0-btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(0-btnsize*2,0,btnsize,clz);
   //center
-  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);
+  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);*/
 }
 
 </script>
