@@ -57,16 +57,16 @@ el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)i
 function widgets(ctx){var fsize=el.height/lines;
 //list
 var ty=1.5;
-  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
+  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#202020",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 //label
 var ttle=window.orientation ? 40 : 60;
 var subt=window.orientation ? 20  : 30;
   ctx.beginPath();  ctx.strokeStyle="#fff";  ctx.lineWidth=1;
   ctx.moveTo(0,el.height*0.67);ctx.lineTo(el.width,el.height*0.67);
   ctx.closePath();  ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(el.width*0.02,el.height*0.02);ctx.lineTo(el.width*0.35,el.height*0.02);
-  ctx.closePath(); ctx.stroke();
-  drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
+ // ctx.beginPath(); ctx.moveTo(el.width*0.02,el.height*0.02);ctx.lineTo(el.width*0.35,el.height*0.02);
+ // ctx.closePath(); ctx.stroke();
+  //drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
   drawText(msgs[index-1].substring(1), subt, "nrm", "#fff", 20, tc.height*0.675);
 //media keys
 var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
