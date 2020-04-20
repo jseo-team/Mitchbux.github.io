@@ -17,7 +17,7 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 //text effects
 "vec4 emboss=0.0- texture2D(txt,vec2(coord.x+0.0016,coord.y+0.0016))*0.1"+
    "-texture2D(txt,vec2(coord.x+0.0008,coord.y+0.0008))*0.627;"+
-   "+texture2D(txt,vec2(coord.x+0.0032,coord.y+0.0032))*0.45+vec4(0.6);"+
+   "+texture2D(txt,vec2(coord.x+0.0032,coord.y+0.0032))*0.45;emboss=emboss*0.1;"+
 //fx
 "vec4 lightening=(clamp(image*sin(i.y*3.14*100.),0.899,1.)+image*0.10+0.2)*0.2;"+
 "float darkening=0.-(0.5-i.x)*(0.5-i.x)*1.8;"+
@@ -56,7 +56,7 @@ el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)i
 function widgets(ctx){var fsize=el.height/lines;
 //list
 var ty=1.5;
-  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#99aabb",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
+  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#ddeeff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 //label
 var ttle=window.orientation ? 40 : 60;
 var subt=window.orientation ? 20  : 30;
@@ -66,7 +66,7 @@ var subt=window.orientation ? 20  : 30;
  // ctx.beginPath(); ctx.moveTo(el.width*0.02,el.height*0.02);ctx.lineTo(el.width*0.35,el.height*0.02);
  // ctx.closePath(); ctx.stroke();
   //drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
-  drawText(msgs[index-1].substring(1), subt, "nrm", "#99aabb", 20, tc.height*0.675);
+  drawText(msgs[index-1].substring(1), subt, "nrm", "#ddeeff", 20, tc.height*0.675);
 //media keys
 var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
   //right
