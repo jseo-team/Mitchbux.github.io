@@ -51,6 +51,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
         <div>
             <textarea class="emscripten" id="output" rows="8" style="display: none"></textarea>
           <br/><a href="#" id='dlbtn'>Click to download the file when compressed</a>
+          <br/><a href="#" id='mp3btn'>Click to download the original MP3 file.</a>
         </div>
         <div id="openModal" class="modalDialog">
             <div> <a href="#close" title="Close" class="close" onclick="done();">X</a>
@@ -95,13 +96,23 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
           document.getElementById('dlbtn').onclick= function(event){
         	alert(files);try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3.txt",   { encoding: 'binary' });
  
-    blob = new Blob([contents], {type: "octet/stream"}),
-    url = window.URL.createObjectURL(blob);
-  	this.href = url;
-    this.target = '_blank';
-  	// target filename
-        this.download="hello.mp3.txt";}catch(ex){alert(ex.toString());}
-}
+          blob = new Blob([contents], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+  	      this.href = url;
+          this.target = '_blank';
+  	      // target filename
+            this.download="hello.mp3.txt";}catch(ex){alert(ex.toString());}
+          }
+          document.getElementById('mp3btn').onclick= function(event){
+        	alert(files);try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3",   { encoding: 'binary' });
+ 
+          blob = new Blob([contents], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+  	      this.href = url;
+          this.target = '_blank';
+  	      // target filename
+            this.download="hello.mp3";}catch(ex){alert(ex.toString());}
+          }
         </script>
 <script async type="text/javascript" src="boxedwine.js"></script>
   </body>
