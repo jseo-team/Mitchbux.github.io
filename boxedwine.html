@@ -94,7 +94,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
             document.body.appendChild(script);
         }
           document.getElementById('dlbtn').onclick= function(event){
-        	alert(files);try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3.txt",   { encoding: 'binary' });
+        	try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3.txt",   { encoding: 'binary' });
  
           blob = new Blob([contents], {type: "octet/stream"}),
           url = window.URL.createObjectURL(blob);
@@ -104,7 +104,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
             this.download="hello.mp3.txt";}catch(ex){alert(ex.toString());}
           }
           document.getElementById('mp3btn').onclick= function(event){
-        	alert(files);try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3",   { encoding: 'binary' });
+        	try{var contents = FS.readFile(Config.dirPrefix+"/hello.mp3",   { encoding: 'binary' });
  
           blob = new Blob([contents], {type: "octet/stream"}),
           url = window.URL.createObjectURL(blob);
