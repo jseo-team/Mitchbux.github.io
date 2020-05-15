@@ -56,7 +56,7 @@ var app = () =>  { started = 1;  ctx = tc.getContext("2d"); ctx.fillStyle="#000"
 el.ontouchstart = function(e){ if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-el.onclick = function(e){ ix=(((e.pageY/el.height)*lines)>>0)+1;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
+el.onclick = function(e){ ix=(((e.pageY/el.height)*lines)>>0)-1;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
    }
 
    // LOADER
@@ -73,7 +73,7 @@ if (started==0){
 }else{                      
 	var outp = document.getElementById("output").value.split("\n");
 	for (var m in outp){
-		if (n==0) msgs[m] = "  " + outp[m];
+		if (m==0) msgs[m] = "  " + outp[m];
 		else msgs[m] = "- " + outp[m];
 		drawText(msgs[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;
 		}
