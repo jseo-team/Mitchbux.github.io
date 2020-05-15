@@ -46,7 +46,7 @@ function tprm(tex) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.texParameteri(gl.TEXTU
 function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);}
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(pr, uni), i);}
 var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
-var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else { try{ bkg.play(); gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
+var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else { try{  try{bkg.play();} gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
 // APPLICATION	
 var app = () =>  { started = 1;  ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ if (e.changedTouches)e.preventDefault();
