@@ -49,18 +49,18 @@ function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(pr, uni), i);}
 var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
 var pass=0;function drawScene() {if (started==0){ try{gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else try{bkg.play(); gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
-// LOADER
-   var started = 0;
-   el.ontouchstart = app;
-   el.onclick = app;     
 // APPLICATION	
-app() =>  {
-  started = 1;
+var app = () =>  { started = 1;
 el.ontouchstart = function(e){if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
 el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
    }
+
+   // LOADER
+   var started = 0;
+   el.ontouchstart = app;
+   el.onclick = app;     
    
 function widgets(ctx){var fsize=el.height/lines;
 //list
