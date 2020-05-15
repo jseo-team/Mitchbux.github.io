@@ -26,7 +26,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
     </div>
 
     <div id="inline">
-        <div class="emscripten">
+        <div class="emscripten" style="display: none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
             <input style="display: none" id="upload" name="upload" onclick="document.getElementById('uploadbtn').click();" onchange="startWithFiles(event.target.files);"  type="file" multiple />
@@ -43,7 +43,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
           <input type="checkbox" id="resize">Resize canvas
           <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked, document.getElementById('resize').checked)">
         </div>
-        <div id="dropzone">
+        <div id="dropzone" style="display: none">
             <div class="emscripten_border">
                 <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
             </div>
