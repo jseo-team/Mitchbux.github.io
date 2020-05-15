@@ -64,11 +64,13 @@ el.onclick = function(e){ ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)
    el.onclick = app;     
    
 function widgets(ctx){var fsize=el.height/lines;
+try{
 //list
 if (started==0){
 var ty=1.5;
   for (var m in loader){drawText(loader[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 }else{                      
+
 var ty=1.5;
 var outp = document.getElementById("output");
 msgs=outp.value.split("\n");
@@ -93,6 +95,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
 //  drawCircle(0-btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(0-btnsize*2,0,btnsize,clz);
   //center
 //  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);
+}catch(e){e.toString();}
 }
 
 </script>
