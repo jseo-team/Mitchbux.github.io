@@ -32,11 +32,11 @@ hello json ("file.json"),
 
 
 # -- and stack mash up everything
-root xml {return js.hello.world + (this.node? this.node: "node-not-found"); },
+root xml {return js.hello.world + (this.node? this.node: "<br/>node-not-found"); },
 str [toc] {JSON::XML::},
 
 ## Global stack
-{return js.str.toc + js.root.xml; }
+{return js.str.toc + js.root.xml ; }
 
 </script>
 
@@ -123,6 +123,7 @@ var done="<br/>";
 var scripts=document.getElementsByTagName("script");
 for(var n in scripts)if (scripts[n].type=="won"){
 js.WON(scripts[n].innerText); document.write(js.toString()+done);}
+
 
 </script>
 </body>
