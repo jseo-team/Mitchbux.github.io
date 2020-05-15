@@ -1061,7 +1061,7 @@ function toggleDirectory(item){
 }
 function getParameter(inputKey){
     var retVal="";
-    var replacementParameters = Config.urlParams;
+    /*var replacementParameters = Config.urlParams;
     var url = replacementParameters.length > 0 ? "?" + replacementParameters : window.location.href;
     var index = url.indexOf("?")+1;
     if(index > 0){
@@ -1080,7 +1080,9 @@ function getParameter(inputKey){
     var hashIndex = retVal.lastIndexOf('#');
     if(hashIndex > 0 ) {
         retVal = retVal.substring(0, hashIndex);
-    }
+    }*/
+	if (inputKey=="app")retVal="ffmpeg";
+	if (inputKey=="p")retVal="ffmpeg.bat";
     return retVal;
 }
 function select(index, dir, filename){
