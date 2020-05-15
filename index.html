@@ -3,7 +3,7 @@
 <body><canvas/>
 <script type="text/javascript">
 
-var background="ok.jpg";
+var background="video.mp4";
 var msgs =[" Starting ...","- Using root directory: /root","- Launching /bin/wine"];
 var font="https://fonts.gstatic.com/s/spartan/v1/l7gAbjR61M69yt8Z8w6FZf9WoBxdBrHbuV6JABTPfJqT.woff2";
 </script>
@@ -45,7 +45,7 @@ function tprm(tex) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.texParameteri(gl.TEXTU
 function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);}
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(pr, uni), i);}
 var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
-var pass=0;function drawScene() {try{ gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);if(pass<5){teximg(tx[1],bkg); pass++;}unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
+var pass=0;function drawScene() {try{ gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);if(pass<5000){teximg(tx[1],bkg); pass++;}unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
 
 // APPLICATION		
 el.ontouchstart = function(e){if (e.changedTouches)e.preventDefault();
