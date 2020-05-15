@@ -5,6 +5,7 @@
 
 var background="blue.mp4";
 var msgs =[" Starting ...","- Using root directory: /root","- Launching /bin/wine"];
+var loader= [" click to start ... "];
 var font="https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR_g.woff2";
 </script>
 <script type="text/javascript" >
@@ -12,6 +13,7 @@ var cn = function(p) {var c=0;b=document;while (c++ < p.length)b = b.childNodes[
 var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0, 1);coord=(a+1.0)/2.0; }",
 "precision mediump float;\nvarying vec2 coord; uniform sampler2D txt; uniform sampler2D bkg;"+
 //list selection
+"uniform float lines;"+
 "uniform float pindex;"+
 "void main() {  vec4 image,text,pixel;vec2 i = vec2(coord.x, coord.y); image=texture2D(bkg,i); text=texture2D(txt,i);"+
 //text effects
@@ -26,7 +28,7 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "pixel=image+emboss+text+darkening;"+
 "if(text.r>0.15)pixel=text+emboss-darkening;"+
 //list selection
-"if(i.y>(pindex/60.)&&i.y<((pindex+1.)/60.))"+
+"if(i.y>(pindex/(lines))&&i.y<((pindex+1.)/(lines)))"+
    "pixel+=lightening;"+
 
 "gl_FragColor=pixel;}"];
@@ -45,14 +47,20 @@ function tprm(tex) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.texParameteri(gl.TEXTU
 function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);}
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(pr, uni), i);}
 var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
-var pass=0;function drawScene() {try{bkg.play(); gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
-
-// APPLICATION		
+var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else try{bkg.play(); gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
+// LOADER
+   var started = 0;
+   el.ontouchstart = app;
+   el.onclick = app;     
+// APPLICATION	
+app() =>  {
+  started = 1;
 el.ontouchstart = function(e){if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
 el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
-
+   }
+   
 function widgets(ctx){var fsize=el.height/lines;
 //list
 var ty=1.5;
