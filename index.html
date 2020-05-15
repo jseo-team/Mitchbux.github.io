@@ -34,7 +34,7 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "gl_FragColor=pixel;}"];
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
-var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc);bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;";bkg.appendChild(src);src.src=background;bkg.loop=true;bkg.play();el=cn("120");d.body.insertBefore(bkg,el);ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
+var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc);bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;";bkg.appendChild(src);src.src=background;bkg.loop=true;el=cn("120");d.body.insertBefore(bkg,el);ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
 iID = setInterval(drawScene, 90); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
 function drawCircle(x,y,size,color){ ctx.beginPath();ctx.fillStyle=color;ctx.arc(el.width*0.5+x,el.height*0.8+y,size,0,Math.PI*2.0);ctx.fill();}
@@ -47,13 +47,13 @@ function tprm(tex) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.texParameteri(gl.TEXTU
 function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);}
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(pr, uni), i);}
 var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
-var pass=0;function drawScene() {if (started==0){ try{gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else try{bkg.play(); gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
+var pass=0;function drawScene() {if (started==0){ try{gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(ex){console.log(ex.toString());}} else try{ gl.uniform1f(gl.getUniformLocation(pr, "pindex"), lines-index-1.5);gl.uniform1f(gl.getUniformLocation(pr, "lines"), lines);teximg(tx[0], tc);teximg(tx[1],bkg); unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);}}
 // APPLICATION	
 var app = () =>  { started = 1;
-el.ontouchstart = function(e){if (e.changedTouches)e.preventDefault();
+el.ontouchstart = function(e){bkg.play(); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
+el.onclick = function(e){ bkg.play(); ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
    }
 
    // LOADER
