@@ -25,7 +25,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
 
-    <div id="inline">
+    <div id="inline" style="display:none">
         <div class="emscripten" style="display: none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
@@ -75,7 +75,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
                 </div>
             </div>
         </div>
-        <hr>
+        
     </div>
         <!-- script type="text/javascript" src="dropbox.min.js"></script -->
         <script type="text/javascript" src="browserfs.min.js"></script>
