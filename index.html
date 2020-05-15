@@ -67,7 +67,8 @@ var ty=1.5;
   for (var m in loader){drawText(loader[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 }else{                      
 var ty=1.5;
-var outp = document.getElementByid("output");
+var outp = document.getElementById("output");
+msgs=outp.value.split("\n");
   for (var m in msgs){drawText(msgs[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 }
 //label
