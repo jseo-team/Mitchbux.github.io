@@ -56,7 +56,7 @@ var app = () =>  { started = 1;  ctx = tc.getContext("2d"); ctx.fillStyle="#000"
 el.ontouchstart = function(e){ if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-el.onclick = function(e){ ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
+el.onclick = function(e){ ix=(((e.pageY/el.height)*lines)>>0)+1;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
    }
 
    // LOADER
@@ -66,15 +66,17 @@ el.onclick = function(e){ ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)
 function widgets(ctx){var fsize=el.height/lines;
 try{
 //list
-if (started==0){
 var ty=1.5;
+
+if (started==0){
   for (var m in loader){drawText(loader[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 }else{                      
-
-var ty=1.5;
-var outp = document.getElementById("output");
-msgs=outp.value.split("\n");
-  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
+	var outp = document.getElementById("output").value.split("\n");
+	for (var m in outp){
+		if (n==0) msgs[m] = "  " + outp[m];
+		else msgs[m] = "- " + outp[m];
+		drawText(msgs[m], fsize, "nrm","#fff",30,ty++*(fsize)); if (ty==1.5)ty=2.;
+		}
 }
 //label
 var ttle=window.orientation ? 20 : 30;
