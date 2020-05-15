@@ -3,8 +3,8 @@
 <body><canvas/>
 <script type="text/javascript">
 
-var background="dj.jpg";
-var msgs =[" [whole] {scripting} AR"," coming soon..."];
+var background="video.mp4";
+var msgs =[" Starting ...","- Using root directory: /root","- Launching /bin/wine"];
 var font="https://fonts.gstatic.com/s/spartan/v1/l7gAbjR61M69yt8Z8w6FZf9WoBxdBrHbuV6JABTPfJqT.woff2";
 </script>
 <script type="text/javascript" >
@@ -32,8 +32,8 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "gl_FragColor=pixel;}"];
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
-var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc),bkg=d.createElement("img");bkg.style="display:none";bkg.src=background;d.body.appendChild(bkg);el=cn("120");ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
-/*iID = setInterval(drawScene, 200);*/ var lines=30; var index=2;var minline=lines*0.395;var p=0.0;
+var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc),bkg=d.createElement("video"),src=d.createElement("source");bkg.appendChild(src);bkg.style="display:none";src.src=background;bkg.play();d.body.appendChild(bkg);el=cn("120");ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
+/*iID = setInterval(drawScene, 200);*/ var lines=50; var index=2;var minline=lines*0.395;var p=0.0;
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
 function drawCircle(x,y,size,color){ ctx.beginPath();ctx.fillStyle=color;ctx.arc(el.width*0.5+x,el.height*0.8+y,size,0,Math.PI*2.0);ctx.fill();}
 function rsz(){el.style.backgroundColor="#000";tc.width = el.width = document.documentElement.clientWidth; tc.height = el.height = document.documentElement.clientHeight;gl.viewport(0, 0, el.width, el.height);ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx);drawScene();}rsz();document.onload = rsz;window.ondeviceorientation = rsz;window.onresize=rsz;
@@ -56,25 +56,25 @@ el.onclick = function(e){ix=((e.pageY/el.height)*lines)>>0;if (ix<=msgs.length)i
 function widgets(ctx){var fsize=el.height/lines;
 //list
 var ty=1.5;
-  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#ddeeff",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
+  for (var m in msgs){drawText(msgs[m], fsize, "nrm","#ddd",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 //label
-var ttle=window.orientation ? 40 : 60;
-var subt=window.orientation ? 20  : 30;
+var ttle=window.orientation ? 20 : 30;
+var subt=window.orientation ? 10  : 15;
   ctx.beginPath();  ctx.strokeStyle="#99aabb";  ctx.lineWidth=1;
   ctx.moveTo(0,el.height*0.67);ctx.lineTo(el.width,el.height*0.67);
   ctx.closePath();  ctx.stroke();
  // ctx.beginPath(); ctx.moveTo(el.width*0.02,el.height*0.02);ctx.lineTo(el.width*0.35,el.height*0.02);
  // ctx.closePath(); ctx.stroke();
   //drawText("Whole (64bits)",ttle , "nrm", "#fff", 10, tc.height*0.66-ttle);
-  drawText(msgs[index-1].substring(1), subt, "nrm", "#ddeeff", 20, tc.height*0.675);
+  drawText(msgs[index-1].substring(1), subt, "nrm", "#ddd", 20, tc.height*0.675);
 //media keys
 var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
   //right
-  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
+//  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
   //left
-  drawCircle(0-btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(0-btnsize*2,0,btnsize,clz);
+//  drawCircle(0-btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(0-btnsize*2,0,btnsize,clz);
   //center
-  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);
+//  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);
 }
 
 </script>
