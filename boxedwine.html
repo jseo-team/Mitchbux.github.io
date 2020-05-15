@@ -14,13 +14,13 @@
 body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
   	</style>
   <!-- if running inline add style="display: none" to id="loading" and id="inline" and remove same from id="run-inline" -->
-<!--  <div id="loading">
+  <div id="loading" style="display:none">
       <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"></center></figure>
       <div class="emscripten" id="status">Downloading...</div>
       <div class="emscripten">
           <progress value="0" max="100" id="progress" hidden=1></progress>
       </div>
-  </div>-->
+  </div>
     <div id="run-inline" style="display: none">
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
@@ -30,8 +30,8 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
             <input style="display: none" id="upload" name="upload" onclick="document.getElementById('uploadbtn').click();" onchange="startWithFiles(event.target.files);"  type="file" multiple />
-            <button id="downloadbtn" onclick="buildTree();">Get File(s)</button>
-            <a id="modalLink" href="#openModal">Download file >>></a>
+            <button id="downloadbtn" style="display: none" onclick="buildTree();">Get File(s)</button>
+            <a style="display: none" id="modalLink" href="#openModal">Download file >>></a>
             <a style="display: none" id="modalLinkExe" href="#openModalExe">Open</a>
 
           <span id="sound-checkbox" style="display: none">
