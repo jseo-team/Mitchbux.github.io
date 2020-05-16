@@ -69,10 +69,10 @@ el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); e.target=cnv; };
 el.ontouchstart = function(e){  if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();
-cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);};
+cnv=d.getElementById('canvas'); e.target=cnv;};
 
 el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();
-cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);
+cnv=d.getElementById('canvas'); e.target=cnv;
 };
    }
 
