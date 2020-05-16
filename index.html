@@ -80,9 +80,9 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
-el.onmousemove = (e)=>{cnv=d.getElementById('canvas');};
-el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); };
-el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); };
+el.onmousemove = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
+el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
+el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
@@ -132,7 +132,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
     </div>
 
     <div id="inline" >
-        <div class="emscripten">
+        <div class="emscripten" style="display:none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
             <input style="display: none" id="upload" name="upload" onclick="document.getElementById('uploadbtn').click();" onchange="startWithFiles(event.target.files);"  type="file" multiple />

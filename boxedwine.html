@@ -25,7 +25,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
 
-    <div id="inline" style="display:none">
+    <div id="inline" style="">
         <div class="emscripten" style="display: none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
@@ -43,13 +43,13 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
           <input type="checkbox" id="resize">Resize canvas
           <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked, document.getElementById('resize').checked)">
         </div>
-        <div id="dropzone" style="display: none">
+        <div id="dropzone" style="">
             <div class="emscripten_border">
                 <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
             </div>
         </div>
         <div>
-            <textarea class="emscripten" id="output" rows="8" style="display: none"></textarea>
+            <textarea class="emscripten" id="output" rows="8" style=""></textarea>
           <br/><a href="#" style="display:none" id='mp3btn'>Click to download the original MP3 file.</a>
         </div>
         <div id="openModal" class="modalDialog">
