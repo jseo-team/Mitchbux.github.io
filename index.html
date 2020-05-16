@@ -24,7 +24,7 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "float darkening=0.-(0.5-i.x)*(0.5-i.x)*1.8;"+
 
 //application
-"pixel=(image+emboss+text+darkening)*0.3*window;"+
+"pixel=(image+emboss+text+darkening)*0.3 + window*(1.0-(image+emboss+text+darkening)*0.3);"+
 "if(text.r>0.15)pixel=text+emboss-darkening;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
@@ -60,12 +60,19 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 
 // APPLICATION	
 var app = () =>  { started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
-el.ontouchstart = function(e){ if (e.changedTouches)e.preventDefault();
+
+el.ontouchend = function(e){cnv=d.getElementById('canvas');var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}
+el.ontouchmove = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mousemove", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}
+el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}}
+
+el.ontouchstart = function(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
-if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();cnv.click(e);};
-el.onclick = function(e){ ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();
-cnv.click(e);
+if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
+el.onclick = function(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e); ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();
 };
+el.onmousemove(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
+el.onmousedown(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
+el.onmouseup(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
    }
 
    // LOADER
@@ -202,6 +209,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
 <script async type="text/javascript" src="boxedwine.js"></script>
 
 </body>
+
 
 
 
