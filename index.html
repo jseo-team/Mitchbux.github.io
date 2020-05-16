@@ -83,17 +83,17 @@ cnv=d.getElementById('canvas'); e.target=cnv;
 el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
 evt = document.createEvent("MouseEvents");
   evt.initMouseEvent("mousemove", true, true, window,
-    0, e.clientX, e.clientY, 0, 0, false, false, false, false, 0, null);
+    0,0,0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
   cnv.dispatchEvent(evt); };
 el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
 evt = document.createEvent("MouseEvents");
   evt.initMouseEvent("mousedown", true, true, window,
-    0, e.clientX, e.clientY, 0, 0, false, false, false, false, 0, null);
+    0,0,0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
  cnv.dispatchEvent(evt); };
 el.onmouseup = (e)=>{cnv=d.getElementById('canvas');
 evt = document.createEvent("MouseEvents"); 
   evt.initMouseEvent("click", true, true, window,
-    0, e.clientX, e.clientY, 0, 0, false, false, false, false, 0, null);
+    0, 0, 0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
  cnv.dispatchEvent(evt); };
    
 function widgets(ctx){var fsize=el.height/lines;
