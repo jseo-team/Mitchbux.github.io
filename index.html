@@ -61,18 +61,21 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 // APPLICATION	
 var app = () =>  { started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 
-el.ontouchend = function(e){cnv=d.getElementById('canvas');var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}
-el.ontouchmove = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mousemove", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}
-el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, window, 0, 0, 0, e.screenX, e.screenY); cnv.dispatchEvent(evt);}}
+el.ontouchend = function(e){cnv=d.getElementById('canvas');var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}
+el.ontouchmove = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mousemove", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}
+el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}}
 
-el.ontouchstart = function(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e); if (e.changedTouches)e.preventDefault();
+el.ontouchstart = function(e){  if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
-if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-el.onclick = function(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e); ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();
+if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();
+cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);};
+
+el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();
+cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);
 };
-el.onmousemove(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
-el.onmousedown(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
-el.onmouseup(e){cnv=d.getElementById('canvas'); cnv.dispatchEvent(e);}
+el.onmousemove(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mousemove", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}
+el.onmousedown(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mousemove", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}
+el.onmouseup(e){cnv=d.getElementById('canvas'); var evt =document.createEvent("MouseEvents");evt.initEvent("mouseup", true, true, cnv, 0, 0, 0, e.clientX, e.clientY); cnv.dispatchEvent(evt);}}
    }
 
    // LOADER
