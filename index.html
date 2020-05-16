@@ -81,26 +81,13 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    el.ontouchstart = app;
    el.onclick = app;     
    
-el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
+   strmouse = ["mousemove", "mousedown", "mouseup", "click"];
+   for(var n in strmouse)
+el.addEventListener(strmouse[n] , (e)=>{cnv=d.getElementById('canvas');
 evt = document.createEvent("MouseEvents");
-  evt.initMouseEvent("mousemove", true, true, window,
-    0,0,0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
-  cnv.dispatchEvent(evt); };
-el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
-evt = document.createEvent("MouseEvents");
-  evt.initMouseEvent("mousedown", true, true, window,
-    0,0,0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
- cnv.dispatchEvent(evt); };
-el.onmouseup = (e)=>{cnv=d.getElementById('canvas');
-evt = document.createEvent("MouseEvents"); 
-  evt.initMouseEvent("mouseup", true, true, window,
-    0, 0, 0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
- cnv.dispatchEvent(evt); };
-el.onclick = (e)=>{cnv=d.getElementById('canvas');
-evt = document.createEvent("MouseEvents"); 
-  evt.initMouseEvent("click", true, true, window,
-    0, 0, 0, (e.pageX/el.width)*cnv.width, (e.pageY/el.height)*cnv.height, false, false, false, false, 0, null);
- cnv.dispatchEvent(evt); };
+  evt.initMouseEvent(strmouse[n], true, true, window,
+    0,0,0, (e.clientX/el.width)*cnv.width, (e.clientY/el.height)*cnv.height, false, false, false, false, 0, null);
+  cnv.dispatchEvent(evt); });
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
