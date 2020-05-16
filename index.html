@@ -84,15 +84,15 @@ el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
 e = document.createEvent("MouseEvents");
   e.initMouseEvent("mousemove", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
- Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+  cnv.dispatchEvent(e); };
 el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
   e.initMouseEvent("mousedown", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
- Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+ cnv.dispatchEvent(e); };
 el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); 
   e.initMouseEvent("mouseup", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
- Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+ cnv.dispatchEvent(e); };
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
