@@ -81,18 +81,20 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    el.ontouchstart = app;
    el.onclick = app;     
 el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
-e = document.createEvent("MouseEvents");
-  e.initMouseEvent("mousemove", true, true, window,
+evt = document.createEvent("MouseEvents");
+  evt.initMouseEvent("mousemove", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
-  cnv.dispatchEvent(e); };
+  cnv.dispatchEvent(evt); };
 el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
-  e.initMouseEvent("mousedown", true, true, window,
+evt = document.createEvent("MouseEvents");
+  evt.initMouseEvent("mousedown", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
- cnv.dispatchEvent(e); };
-el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); 
-  e.initMouseEvent("mouseup", true, true, window,
+ cnv.dispatchEvent(evt); };
+el.onmouseup = (e)=>{cnv=d.getElementById('canvas');
+evt = document.createEvent("MouseEvents"); 
+  evt.initMouseEvent("mouseup", true, true, window,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
- cnv.dispatchEvent(e); };
+ cnv.dispatchEvent(evt); };
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
