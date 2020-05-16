@@ -24,8 +24,8 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "float darkening=0.-(0.5-i.x)*(0.5-i.x)*1.8;"+
 
 //application
-"if(window.r>0.01)pixel=(image+emboss+text+darkening)*0.3 +window -0.3; else "+
-"pixel=(image+emboss+text+darkening)*0.3;"+
+"if(window.r>0.01)pixel=text+window -0.3; else "+
+"pixel=(image+emboss+text+darkening);"+
 "if(text.r>0.15)pixel=text+emboss-darkening;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
@@ -82,15 +82,15 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    el.onclick = app;     
 el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
 e = document.createEvent("MouseEvents");
-  evt.initMouseEvent("mousemove", true, true, cnv,
+  e.initMouseEvent("mousemove", true, true, cnv,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
  Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
 el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
-  evt.initMouseEvent("mousedown", true, true, cnv,
+  e.initMouseEvent("mousedown", true, true, cnv,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
  Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
 el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); 
-  evt.initMouseEvent("mouseup", true, true, cnv,
+  e.initMouseEvent("mouseup", true, true, cnv,
     0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
  Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
    
