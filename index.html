@@ -34,7 +34,7 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
 var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc);bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;";bkg.appendChild(src);src.src=background;bkg.loop=true;el=cn("120");d.body.insertBefore(bkg,el);ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
-iID = setInterval(drawScene, 250); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;
+iID = setInterval(drawScene, 140); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
 function drawCircle(x,y,size,color){ ctx.beginPath();ctx.fillStyle=color;ctx.arc(el.width*0.5+x,el.height*0.8+y,size,0,Math.PI*2.0);ctx.fill();}
 function rsz(){el.style.backgroundColor="#000";tc.width = el.width = document.documentElement.clientWidth; tc.height = el.height = document.documentElement.clientHeight;gl.viewport(0, 0, el.width, el.height);ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx);drawScene();}rsz();document.onload = rsz;window.ondeviceorientation = rsz;window.onresize=rsz;
@@ -50,7 +50,7 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
  else { try{ 
  	if (logtxt){
 	var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length;
-	for (var m in outp){if (m==0) msgs[m] = "  " + outp[m];else msgs[m] = "- " + (outp[m]);}  
+	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
@@ -115,7 +115,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
 
-    <div id="inline" style="display:none">
+    <div id="inline" >
         <div class="emscripten" style="display: none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
@@ -133,7 +133,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
           <input type="checkbox" id="resize">Resize canvas
           <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked, document.getElementById('resize').checked)">
         </div>
-        <div id="dropzone" style="display: none">
+        <div id="dropzone" >
             <div class="emscripten_border">
                 <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
             </div>

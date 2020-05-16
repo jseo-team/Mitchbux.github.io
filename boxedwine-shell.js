@@ -1081,8 +1081,8 @@ function getParameter(inputKey){
     if(hashIndex > 0 ) {
         retVal = retVal.substring(0, hashIndex);
     }*/
-	if (inputKey=="app")retVal="ffmpeg";
-	if (inputKey=="p")retVal="ffmpeg.bat";
+	if (inputKey=="app")retVal="pad";
+	if (inputKey=="p")retVal="pad.bat";
     return retVal;
 }
 function select(index, dir, filename){
