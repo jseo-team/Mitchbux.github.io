@@ -24,8 +24,8 @@ var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0
 "float darkening=0.-(0.5-i.x)*(0.5-i.x)*1.8;"+
 
 //application
-"if(window.r>0.01)pixel=text+window -0.3; else "+
-"pixel=(image+emboss+text+darkening);"+
+
+"pixel=(image+emboss+text+darkening)*0.3+(window-0.3)*window;"+
 "if(text.r>0.15)pixel=text+emboss-darkening;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
