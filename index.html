@@ -63,9 +63,9 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 var app = () =>  {
  started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 
-el.ontouchend = function(e){cnv=d.getElementById('canvas'); e.target=cnv; };
-el.ontouchmove = function(e){cnv=d.getElementById('canvas'); e.target=cnv; };
-el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); e.target=cnv; };
+el.ontouchend = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.ontouchmove = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
 
 el.ontouchstart = function(e){  if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
@@ -80,9 +80,9 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
-el.onmousemove = (e)=>{cnv=d.getElementById('canvas'); e.target=cnv; };
-el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); e.target=cnv; };
-el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); e.target=cnv; };
+el.onmousemove = (e)=>{cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
