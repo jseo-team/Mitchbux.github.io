@@ -49,7 +49,7 @@ var started = 0;var tx=[gl.createTexture(), gl.createTexture()];for(var t in tx)
 var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  else { try{ 
  	if (logtxt){
-	var outp = logtxt.value.split("\n"); if (outp.length>msgs.length){
+	var outp = logtxt.value.split("\n"); if (outp.length>msgs.length){index = outp.length;
 	for (var m in outp){if (m==0) msgs[m] = "  " + outp[m];else msgs[m] = "- " + outp[m];}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
