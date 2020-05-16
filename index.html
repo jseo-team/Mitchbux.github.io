@@ -80,9 +80,19 @@ cnv=d.getElementById('canvas'); e.target=cnv;
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
-el.onmousemove = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
-el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
-el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); cnv.click();};
+el.onmousemove = (e)=>{cnv=d.getElementById('canvas');
+e = document.createEvent("MouseEvents");
+  e.initMouseEvent("mousemove", true, true, window,
+    0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
+ Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.onmousedown = (e)=>{cnv=d.getElementById('canvas'); 
+  e.initMouseEvent("mousedown", true, true, window,
+    0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
+ Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
+el.onmouseup = (e)=>{cnv=d.getElementById('canvas'); 
+  e.initMouseEvent("mouseup", true, true, window,
+    0, 0, 0, e.clientX, e.clientY, false, false, false, false, 0, null);
+ Object.create(e, {target: {value: cnv}}); cnv.dispatchEvent(e); };
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
@@ -132,7 +142,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
     </div>
 
     <div id="inline" >
-        <div class="emscripten" style="display:none">
+        <div class="emscripten">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
             <input style="display: none" id="upload" name="upload" onclick="document.getElementById('uploadbtn').click();" onchange="startWithFiles(event.target.files);"  type="file" multiple />
