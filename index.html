@@ -26,8 +26,8 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 
 //application
 
-"pixel=(image+darkening)+(window-0.6)*(window*0.15);"+
-"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(image+darkening)+(text+emboss-0.6)*0.3;"+
+"pixel=(image+darkening)+(window-0.6)*(window*0.15)+(text+emboss-0.6);"+
+//"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(image+darkening)*0.3;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
    "pixel+=lightening;"+
