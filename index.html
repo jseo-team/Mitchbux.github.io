@@ -36,7 +36,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
 var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc);bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;";bkg.appendChild(src);src.src=background;bkg.loop=true;
-var pst=d.createElement("img"); pst.src="https://screenshot-kit-r50xkn0t9.now.sh/screenshot?url=" + "https://beta.cent.co/%2Bnb1vrq&width=980&height=639"; pst.style="position:relative;left:20%"; 
+var pst=d.createElement("img"); pst.src="https://screenshot-kit-r50xkn0t9.now.sh/screenshot?url=" + "https://beta.cent.co/%2Bnb1vrq&width=980&height=639"; pst.style="position:absolute;left:20%"; 
 el=cn("120");d.body.insertBefore(bkg,el);d.body.insertBefore(pst,bkg); var ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
 var iID = setInterval(drawScene, 40); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
