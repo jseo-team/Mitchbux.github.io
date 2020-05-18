@@ -62,29 +62,22 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 // APPLICATION	
 var app = () =>  {
  started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
-
-//el.ontouchend = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}, type: {value:"mouseup"}}); cnv.dispatchEvent(e); };
-//el.ontouchmove = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}, type: {value:"mousemove"}}); cnv.dispatchEvent(e); };
-//el.ontouchcancel = function(e){cnv=d.getElementById('canvas'); Object.create(e, {target: {value: cnv}, type: {value:"mouseup"}}); cnv.dispatchEvent(e); };
-
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-
-el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};
-   }
+el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};}
 
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
    
-   strmouse = ["mousemove", "mousedown", "mouseup", "click"];
+   /*strmouse = ["mousemove", "mousedown", "mouseup", "click"];
    for(var n in strmouse)
 el.addEventListener(strmouse[n] , (e)=>{cnv=d.getElementById('canvas');
 evt = document.createEvent("MouseEvents");
   evt.initMouseEvent(strmouse[n], true, true, window,
     0,0,0, (e.clientX/el.width)*cnv.width, (e.clientY/el.height)*cnv.height, false, false, false, false, 0, null);
-  cnv.dispatchEvent(evt); });
+  cnv.dispatchEvent(evt); });*/
    
 function widgets(ctx){var fsize=el.height/lines;
 try{
@@ -122,7 +115,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
 
 </script>
 
-<!-- Wine Windows Emulation in your browser  
+<!-- Wine Windows Emulation in your browser  -->
 
 	<div id="loading" style="display:none">
       <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"></center></figure>
@@ -216,7 +209,7 @@ var btnsize=window.orientation ? 40:60, clr="#ccc",clz="#000";
             this.download="hello.mp3";}catch(ex){alert(ex.toString());}
           }
         </script>
-<script async type="text/javascript" src="boxedwine.js"></script> -->
+<script async type="text/javascript" src="boxedwine.js"></script> 
 
 </body>
 
