@@ -26,8 +26,8 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 
 //application
 
-"pixel=(image+darkening)*text+text*0.3+(window-0.6)*(window*0.15);"+
-"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(darkening)+(text+emboss)*0.3-0.6;"+
+"pixel=(image+darkening)+(window-0.6)*(window*0.15);"+
+"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(image+darkening)+(text+emboss-0.6)*0.3;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
    "pixel+=lightening;"+
@@ -103,7 +103,7 @@ var subt=window.orientation ? 10  : 15;
 if(started)
   drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.675);
 //media keys
-var btnsize=window.orientation ? 40:60, clr="#999",clz="#000";
+var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#000";
   //right
 //  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
   //left
