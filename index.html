@@ -10,11 +10,12 @@ var font="https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR
 </script>
 <script type="text/javascript" >
 var cn = function(p) {var c=0;b=document;while (c++ < p.length)b = b.childNodes[p[c - 1]];return b;};
-var s=["attribute vec2 a; varying vec2 coord;void main(){gl_Position = vec4(a, 0, 1);coord=(a+1.0)/2.0; }",
-"precision mediump float;\nvarying vec2 coord; uniform sampler2D txt; uniform sampler2D bkg; uniform sampler2D cnv;"+
+var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 0, 1);coord=(a+1.0)/2.0; }",
+"precision mediump float;\nvarying vec2 coord; uniform sampler2D txt; uniform sampler2D bkg; uniform sampler2D cnv; "+
 //list selection
-" uniform float pindex;"+
-"void main() {  vec4 image,text,pixel,window;vec2 i = vec2(coord.x, coord.y);vec2 w=vec2(coord.x/2.+0.25,coord.y/2.0+(1./(2.*2.))); image=texture2D(bkg,i); text=texture2D(txt,i); window=texture2D(cnv,w);"+
+" uniform float pindex; "+
+" uniform float winr;"+
+"void main() {  vec4 image,text,pixel,window;vec2 i = vec2(coord.x, coord.y);vec2 w=vec2(coord.x/(winr+(!./(winr*2.),coord.y); image=texture2D(bkg,i); text=texture2D(txt,i); window=texture2D(cnv,w);"+
 //text effects
 "vec4 emboss=0.0- texture2D(txt,vec2(coord.x+0.0016,coord.y+0.0016))*0.1"+
    "-texture2D(txt,vec2(coord.x+0.0008,coord.y+0.0008))*0.627;"+
@@ -55,6 +56,7 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 	ctx = tc.getContext("2d"); ctx.fillStyle="#000";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
+ gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
  teximg(tx[0], tc);teximg(tx[1],bkg);teximg(tx[2],cnv); 
  unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");unitex(tx[2], gl.TEXTURE3, 3, "cnv");
  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
