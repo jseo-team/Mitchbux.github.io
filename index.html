@@ -40,7 +40,7 @@ el=cn("120");d.body.insertBefore(bkg,el); var ht=cn("1"),gl=el.getContext("webgl
 var iID = setInterval(drawScene, 40); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
 function drawCircle(x,y,size,color){ ctx.beginPath();ctx.fillStyle=color;ctx.arc(el.width*0.5+x,el.height*0.8+y,size,0,Math.PI*2.0);ctx.fill();}
-function rsz(){el.style.backgroundColor="#fff";tc.width = el.width = document.documentElement.clientWidth; tc.height = el.height = document.documentElement.clientHeight;gl.viewport(0, 0, el.width, el.height);ctx = tc.getContext("2d"); ctx.fillStyle="#999";ctx.fillRect(0,0,el.width,el.height);widgets(ctx);drawScene();}rsz();document.onload = rsz;window.ondeviceorientation = rsz;window.onresize=rsz;
+function rsz(){el.style.backgroundColor="#fff";tc.width = el.width = document.documentElement.clientWidth; tc.height = el.height = document.documentElement.clientHeight;gl.viewport(0, 0, el.width, el.height);ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx);drawScene();}rsz();document.onload = rsz;window.ondeviceorientation = rsz;window.onresize=rsz;
 gl.clearColor(0.0, 0.0, 0.0, 1); gl.clear(gl.COLOR_BUFFER_BIT);function sh(g, t, x) {r = g.createShader(t);g.shaderSource(r, x);g.compileShader(r);return r;};vs = sh(gl, gl.VERTEX_SHADER, s[0]); fs = sh(gl, gl.FRAGMENT_SHADER, s[1]);
 var glpr=gl.createProgram();gl.attachShader(glpr, vs);gl.attachShader(glpr, fs);gl.linkProgram(glpr);gl.useProgram(glpr);
 var a=gl.getAttribLocation(glpr, "a"), buffer = gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER, buffer);gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a, 3, gl.FLOAT, false, 0, 0);
@@ -54,7 +54,7 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
  	if (logtxt){
 	var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length;
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
-	ctx = tc.getContext("2d"); ctx.fillStyle="#999";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
+	ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
@@ -64,7 +64,7 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
 
 // APPLICATION	
 var app = () =>  {
- started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#999";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
+ started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
