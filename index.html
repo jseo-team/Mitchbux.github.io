@@ -52,7 +52,7 @@ var started = 0;var tx=[gl.createTexture(), gl.createTexture(), gl.createTexture
 var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  else { try{ 
  	if (logtxt){
-	var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length;
+	var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length;audio1.play();
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
@@ -63,7 +63,8 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
 
 // APPLICATION	
-var app = () =>  { var audio1=d.getElementById("audio1");var audio2=d.getElementById("audio2");audio1.play();
+var audio1=d.getElementById("audio1");var audio2=d.getElementById("audio2");
+var app = () =>  { 
  started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
@@ -73,7 +74,7 @@ el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.leng
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
-   
+   audio2.play();
    /*strmouse = ["mousemove", "mousedown", "mouseup", "click"];
    for(var n in strmouse)
 el.addEventListener(strmouse[n] , (e)=>{cnv=d.getElementById('canvas');
@@ -89,7 +90,8 @@ var ty=1.5;
 
 if (started==0){
   for (var m in loader){drawText(loader[m], fsize, "nrm","#eee",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
-}else{                      
+}else{                  
+		if (msgs.length > 50) msgs = msgs.slice(msgs.length-50);
 		for(var m in msgs)
 		drawText(msgs[m], fsize, "nrm","#eee",30,ty++*(fsize)); if (ty==1.5)ty=2.;
 		
