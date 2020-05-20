@@ -63,7 +63,7 @@ var pass=0;function drawScene() {if (started==0){ try{teximg(tx[0], tc); unitex(
  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
 
 // APPLICATION	
-var app = () =>  {
+var app = () =>  { var audio1=d.getElemenentById("audio1");var audio2=d.getElemenentById("audio2");audio1.play();
  started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
@@ -115,8 +115,8 @@ var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
 }
 
 </script>
-<audio src="oOne.flac"></audio>
-<audio src="oTwo.flac"/></audio>
+<audio id="audio1" src="oOne.flac"></audio>
+<audio id="audio2" src="oTwo.flac"/></audio>
 
 <!-- Wine Windows Emulation in your browser  -->
 
