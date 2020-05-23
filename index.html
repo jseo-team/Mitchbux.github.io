@@ -121,9 +121,12 @@ var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
 <audio id="audio1" src="oOne.flac"></audio>
 <audio id="audio2" src="oTwo.flac"/></audio>
 
-<!-- Wine Windows Emulation in your browser  -->
-
-	<div id="loading" style="display:none">
+  	<style>
+@font-face{font-family:'dft';src: url('https://fonts.gstatic.com/s/spartan/v1/l7gAbjR61M69yt8Z8w6FZf9WoBxdBrHbuV6JABTPfJqT.woff2');}
+body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
+  	</style>
+  <!-- if running inline add style="display: none" to id="loading" and id="inline" and remove same from id="run-inline" -->
+  <div id="loading" style="display:none">
       <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"></center></figure>
       <div class="emscripten" id="status">Downloading...</div>
       <div class="emscripten">
@@ -134,8 +137,8 @@ var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
 
-    <div id="inline" style="display:none">
-        <div class="emscripten">
+    <div id="inline" style="">
+        <div class="emscripten" style="display:none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
             <input style="display: none" id="upload" name="upload" onclick="document.getElementById('uploadbtn').click();" onchange="startWithFiles(event.target.files);"  type="file" multiple />
@@ -218,6 +221,6 @@ var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
 <script async type="text/javascript" src="boxedwine.js"></script> 
 
 </body>
-
+</html>
 
 
