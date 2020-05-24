@@ -1081,8 +1081,8 @@ function getParameter(inputKey){
     if(hashIndex > 0 ) {
         retVal = retVal.substring(0, hashIndex);
     }*/
-	if (inputKey=="app")retVal="pod";
-	if (inputKey=="p")retVal="pod.bat";
+	if (inputKey=="app")retVal="flt-r0x";
+	if (inputKey=="p")retVal="flt-r0x.exe";
     return retVal;
 }
 function select(index, dir, filename){
