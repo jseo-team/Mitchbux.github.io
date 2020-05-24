@@ -16,7 +16,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 " uniform float pindex; uniform float winr; \n" +
 
 "void main() {  vec4 image,text,pixel,window;vec2 i = vec2(coord.x, coord.y);vec2 w=vec2((coord.x/winr),(coord.y*winr)); window=texture2D(cnv,w); "+
-"if (window.g>0.9) image=texture2D(bkg,i); else image=vec4(0.0); text=texture2D(txt,i); "+
+" image=texture2D(bkg,i); text=texture2D(txt,i); "+
 //text effects
 "vec4 emboss=0.0- texture2D(txt,vec2(coord.x+0.0016,coord.y+0.0016))*0.1"+
    "-texture2D(txt,vec2(coord.x+0.0008,coord.y+0.0008))*0.627;"+
@@ -60,7 +60,10 @@ if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
- teximg(tx[0], tc);teximg(tx[1],bkg);teximg(tx[2],cnv); 
+ teximg(tx[0], tc);
+	 if (msgs.length>3)
+	 teximg(tx[1],bkg);
+	teximg(tx[2],cnv); 
  unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");unitex(tx[2], gl.TEXTURE3, 3, "cnv");
  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
 
@@ -138,7 +141,7 @@ body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:30px;}
         <button id="inline-runbtn" onclick="startInline()">inline</button>
     </div>
 
-    <div id="inline" style="">
+    <div id="inline" style="display:none">
         <div class="emscripten" style="display:none">
             <button id="startbtn" style="display: none" onclick="start()">Start</button>
             <button id="uploadbtn" style="display: none" onclick="document.getElementById('upload').click()" >Add File(s)</button>
