@@ -16,7 +16,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 " uniform float pindex; uniform float winr; \n" +
 
 "void main() {  vec4 image,text,pixel,window;vec2 i = vec2(coord.x, coord.y);vec2 w=vec2((coord.x/winr),(coord.y*winr)); window=texture2D(cnv,w); "+
-" image=texture2D(bkg,i); text=texture2D(txt,i); "+
+" image=texture2D(bkg/winr,i); text=texture2D(txt,i); "+
 //text effects
 "vec4 emboss=0.0- texture2D(txt,vec2(coord.x+0.0016,coord.y+0.0016))*0.1"+
    "-texture2D(txt,vec2(coord.x+0.0008,coord.y+0.0008))*0.627;"+
@@ -27,7 +27,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 
 //application
 
-"pixel=(image+darkening)+(window-0.6)*(window)+(text+emboss-0.2)*(text);"+
+"pixel=(image)+(window-0.6)*(window)+(text+emboss-0.2)*(text);"+
 //"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(image+darkening)*0.3;"+
 //list selection
 "if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
