@@ -102,6 +102,8 @@ if (started==0){
 		
 }
 //label
+ctx.drawImage("bg4.png",0,0,el.width,el.height);
+
 var ttle=window.orientation ? 20 : 30;
 var subt=window.orientation ? 10  : 15;
   ctx.beginPath();  ctx.strokeStyle="#eee";  ctx.lineWidth=1;
@@ -112,6 +114,7 @@ if(started)
   drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.675);
 //media keys
 var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
+
   //right
 //  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
   //left
