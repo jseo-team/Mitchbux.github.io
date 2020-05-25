@@ -4,6 +4,7 @@
 <script type="text/javascript">
 
 var background="worry.mp4";
+var poster="bg4.png";
 var msgs =[" Starting ...",];
 var loader= [" ::: / Whole (32-64 bits) / :::", " loading ... "];
 var font="https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR_g.woff2";
@@ -37,8 +38,8 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
 var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;";d.body.appendChild(tc);
-bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;display:none";bkg.appendChild(src);src.src=background;bkg.loop=true;
-imz=d.createElement("img");imz.src="bg4.png";imz.style="display:none";
+var bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;display:none";bkg.appendChild(src);src.src=background;bkg.loop=true;
+var imz=d.createElement("img");imz.src=poster;imz.style="display:none";
 el=cn("120");d.body.insertBefore(bkg,el);d.body.appendChild(imz); var ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
 var iID = setInterval(drawScene, 40); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
