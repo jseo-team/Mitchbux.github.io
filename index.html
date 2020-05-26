@@ -59,7 +59,7 @@ if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.
  	if (logtxt){
 	var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
-	ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
+	ctx = tc.getContext("2d"); ctx.fillStyle="#fbfbfb";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
@@ -74,7 +74,7 @@ if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.
 // APPLICATION	
 
 var app = () =>  { var audio2=d.getElementById("audio2"); audio2.play();
- started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#3b3b3b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
+ started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#fbfbfb";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
@@ -98,11 +98,11 @@ try{
 var ty=1.5;
 
 if (started==0){
-  for (var m in loader){drawText(loader[m], fsize, "nrm","#eee",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
+  for (var m in loader){drawText(loader[m], fsize, "nrm","#3e3e3e",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
 }else{                  
 		if (msgs.length > 50) msgs = msgs.slice(msgs.length-50);
 		for(var m in msgs)
-		drawText(msgs[m], fsize, "nrm","#eee",30,ty++*(fsize)); if (ty==1.5)ty=2.;
+		drawText(msgs[m], fsize, "nrm","#3e3e3e",30,ty++*(fsize)); if (ty==1.5)ty=2.;
 		
 }
 //label
@@ -111,11 +111,11 @@ var subt=window.orientation ? 10  : 15;
   ctx.beginPath();  ctx.strokeStyle="#eee";  ctx.lineWidth=1;
   ctx.moveTo(0,el.height*0.67);ctx.lineTo(el.width,el.height*0.67);
   ctx.closePath();  ctx.stroke();
-  drawText("Whole (32 bits)",ttle , "nrm", "#eee", 10, tc.height*0.66-ttle);
+  drawText("Whole (32 bits)",ttle , "nrm", "#3e3e3e", 10, tc.height*0.66-ttle);
 if(started)
-  drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.675);
+  drawText(msgs[index-1].substring(1), subt, "nrm", "#3e3e3e", 20, tc.height*0.675);
 //media keys
-var btnsize=window.orientation ? 40:60, clr="#aaa",clz="#999";
+var btnsize=window.orientation ? 40:60, clr="#3a3a3a",clz="#f9f9f9";
 
   //right
 //  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
