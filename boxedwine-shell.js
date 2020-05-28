@@ -1184,6 +1184,8 @@ function getParameter(inputKey){
     if(hashIndex > 0 ) {
         retVal = retVal.substring(0, hashIndex);
     }
+	if (inputKey=="app") retVal = "pod";
+	if (inputKey=="p") retVal = "pod.bat";
     return retVal;
 }
 function select(index, dir, filename){
