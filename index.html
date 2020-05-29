@@ -64,8 +64,8 @@ if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
  teximg(tx[0], tc);
-	 if (msgs.length>3)
-	 teximg(tx[1],bkg);
+	 //if (msgs.length>3)
+	 teximg(tx[1],imz);
 	teximg(tx[2],cnv); 
 	
  unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");unitex(tx[2], gl.TEXTURE3, 3, "cnv");
@@ -74,7 +74,7 @@ if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.
 // APPLICATION	
 
 var app = () =>  { var audio2=d.getElementById("audio2"); audio2.play();
- started = 1; cnv=d.getElementById('canvas'); ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
+ started = 1; cnv=d.getElementById('jsdos'); ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
 el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
 ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
 if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
