@@ -57,10 +57,10 @@ var pass=0;function drawScene() {
 
 if (started==0){ try{ cnv=d.getElementById('jsdos');
 
-teximg(tx[0], tc); teximg(tx[1],bkg);  teximg(tx[2],cnv);
+teximg(tx[0], tc); teximg(tx[1],imz);  teximg(tx[2],cnv);
 
 unitex(tx[0], gl.TEXTURE1, 1, "txt");
-unitex(tx[1], gl.TEXTURE2, 2, "imz");
+unitex(tx[1], gl.TEXTURE2, 2, "bkg");
 unitex(tx[2], gl.TEXTURE3, 3, "cnv");
 
 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
