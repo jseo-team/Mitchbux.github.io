@@ -68,7 +68,7 @@ gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  
  //when clicked
  else { try{  	if (true){ //messages
-	var outp = ["[F2] to save the current file", "[F9] to start the demo", "[esc] to quit the program" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
+	var outp = ["[F2] to save the current file", "", "[F9] to start the demo", "[esc] to quit the program" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
