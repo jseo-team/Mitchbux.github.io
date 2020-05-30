@@ -31,7 +31,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 "pixel=(image*0.2)+(window)*(window)+(text+emboss-0.2)*(text);"+
 //"if(text.r!=0.6 || text.g!=0.6 || text.b!=0.6)pixel=(image+darkening)*0.3;"+
 //list selection
-//"if(i.y>(pindex/80.)&&i.y<((pindex+1.)/80.))"+
+//"if(i.y>(pindex/40.)&&i.y<((pindex+1.)/40.))"+
 //   "pixel+=lightening;"+
 
 "gl_FragColor=pixel;}"];
@@ -41,7 +41,7 @@ var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0
 var bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;display:none";bkg.appendChild(src);src.src=background;bkg.loop=true;
 var imz=d.createElement("img");imz.src=poster;imz.style="display:none";
 el=cn("120");d.body.insertBefore(bkg,el);d.body.appendChild(imz); var ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
-var iID = setInterval(drawScene, 40); var lines=80; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
+var iID = setInterval(drawScene, 40); var lines=40; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
 function drawText(str, size, fnt, color, x, y) {ctx.font = size + 'px "'+fnt+'"'; ctx.textBaseline = 'top';ctx.fillStyle = color;ctx.fillText(str, x, y);}
 function drawCircle(x,y,size,color){ ctx.beginPath();ctx.fillStyle=color;ctx.arc(el.width*0.5+x,el.height*0.8+y,size,0,Math.PI*2.0);ctx.fill();}
 function rsz(){el.style.backgroundColor="#000";tc.width = el.width = document.documentElement.clientWidth; tc.height = el.height = document.documentElement.clientHeight;gl.viewport(0, 0, el.width, el.height);ctx = tc.getContext("2d"); ctx.fillStyle="#909090";ctx.fillRect(0,0,el.width,el.height);widgets(ctx);drawScene();}rsz();document.onload = rsz;window.ondeviceorientation = rsz;window.onresize=rsz;
@@ -54,23 +54,32 @@ function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(glpr, uni), i);}
 var started = 0;var tx=[gl.createTexture(), gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
 var pass=0;function drawScene() {
-if (started==0){cnv=d.getElementById('jsdos'); try{teximg(tx[0], tc); teximg(tx[1],bkg); teximg(tx[2],cnv);
-unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");unitex(tx[2], gl.TEXTURE3, 3, "cnv");
+
+if (started==0){ try{ cnv=d.getElementById('jsdos');
+
+teximg(tx[0], tc); teximg(tx[1],null);  teximg(tx[2],cnv);
+
+unitex(tx[0], gl.TEXTURE1, 1, "txt");
+unitex(tx[1], gl.TEXTURE2, 2, "bkg");
+unitex(tx[2], gl.TEXTURE3, 3, "cnv");
+
 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
- else { try{ 
- 	if (true){
-	var outp = ["[F2] to save", "[F9] to run", "[esc] to quit" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
+
+ 
+ //when clicked
+ else { try{  	if (true){ //messages
+	var outp = ["[F2] to save the current file", "[F9] to start the demo", "[esc] to quit the program" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
- teximg(tx[0], tc);
-	 if (msgs.length>=3)
-	 teximg(tx[1],bkg);
-	teximg(tx[2],cnv); 
+ teximg(tx[0], tc); teximg(tx[1],bkg); teximg(tx[2],cnv); 
 	
- unitex(tx[0], gl.TEXTURE1, 1, "txt");unitex(tx[1], gl.TEXTURE2, 2, "bkg");unitex(tx[2], gl.TEXTURE3, 3, "cnv");
+ unitex(tx[0], gl.TEXTURE1, 1, "txt");
+ unitex(tx[1], gl.TEXTURE2, 2, "bkg");
+ unitex(tx[2], gl.TEXTURE3, 3, "cnv");
+ 
  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
 
 // APPLICATION	
@@ -111,11 +120,11 @@ if (started==0){
 var ttle=window.orientation ? 20 : 30;
 var subt=window.orientation ? 10  : 15;
   ctx.beginPath();  ctx.strokeStyle="#eee";  ctx.lineWidth=1;
-  ctx.moveTo(0,el.height*0.766);ctx.lineTo(el.width,el.height*0.766);
+  ctx.moveTo(0,el.height*0.73);ctx.lineTo(el.width,el.height*0.73);
   ctx.closePath();  ctx.stroke();
-  drawText("Whole (32 bits)",ttle , "nrm", "#3e3e3e", 10, tc.height*0.756-ttle);
+  drawText("Whole (32 bits)",ttle , "nrm", "#3e3e3e", 10, tc.height*0.72-ttle);
 if(started)
-  drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.771);
+  drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.735);
 //media keys
 var btnsize=window.orientation ? 40:60, clr="#eee",clz="#909090";
 
