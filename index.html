@@ -57,14 +57,15 @@ var pass=0;function drawScene() {
 if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  else { try{ 
  	//if (logtxt){
-	//var outp = logtxt.value.split("\n");outp.pop(); if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
-	//for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
+	var outp = ["[F2] to save", "[F9] to run", "[esc] to quit" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
+	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);
+	}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
  teximg(tx[0], tc);
-	 //if (msgs.length>3)
+	 if (msgs.length>=3)
 	 teximg(tx[1],imz);
 	teximg(tx[2],cnv); 
 	
@@ -128,23 +129,18 @@ var btnsize=window.orientation ? 40:60, clr="#eee",clz="#909090";
 
 </script>
 <audio id="audio1" src="oOne.flac"></audio>
-<audio id="audio2" src="oTwo.flac"/></audio>
-
-  	<style>
-@font-face{font-family:'dft';src: url('https://fonts.gstatic.com/s/spartan/v1/l7gAbjR61M69yt8Z8w6FZf9WoBxdBrHbuV6JABTPfJqT.woff2');}
-body{color:#303030;font-family: "dft";font-size:30px;}
-  	</style>
+<audio id="audio2" src="oTwo.flac"/></audio>	
 <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
- <canvas id="jsdos"></canvas>
+ <canvas id="jsdos" style="display:none"></canvas>
   <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
   <script>
     Dos(document.getElementById("jsdos"), { 
-      wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+      wdosboxUrl: "https://js-dos.com/6.22/current/dosbox.js",
       cycles: "max",
       autolock: true,
     }).ready(function (fs, main) {
-      fs.extract("https://mitchbux.github.io/kedos_1.zip").then(function () {
-        main(["-c", "install", "-c", "cd ke", "-c", "ke"]).then(function (ci) {
+      fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
+        main(["-c", "cwsdpmi", "-c", "fasmd rush.asm"]).then(function (ci) {
           window.ci = ci;
         });
       });
