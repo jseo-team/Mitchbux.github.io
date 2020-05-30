@@ -54,7 +54,7 @@ function teximg(tex, img) {gl.bindTexture(gl.TEXTURE_2D, tex);gl.pixelStorei(gl.
 function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE_2D, tex);gl.uniform1i(gl.getUniformLocation(glpr, uni), i);}
 var started = 0;var tx=[gl.createTexture(), gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
 var pass=0;function drawScene() {
-if (started==0){ try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");	teximg(tx[2],cnv); unitex(tx[2], gl.TEXTURE3, 3, "cnv");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
+if (started==0){cnv=d.getElementById('jsdos'); try{teximg(tx[0], tc); unitex(tx[0], gl.TEXTURE1, 1, "txt");	teximg(tx[2],cnv); unitex(tx[2], gl.TEXTURE3, 3, "cnv");gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  else { try{ 
  	if (true){
 	var outp = ["[F2] to save", "[F9] to run", "[esc] to quit" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
