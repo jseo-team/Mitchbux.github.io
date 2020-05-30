@@ -150,7 +150,7 @@ var btnsize=window.orientation ? 40:60, clr="#eee",clz="#909090";
       autolock: true,
     }).ready(function (fs, main) {
       fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
-        main(["-c", "cwsdpmi", "-c", "fasmd rush.asm"]).then(function (ci) {
+        main(["-c", "cwsdpmi", "-c", "fasmd clean.asm"]).then(function (ci) {
           window.ci = ci;
         });
       });
