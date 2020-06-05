@@ -185,7 +185,7 @@ fasmd demo.asm
             this.download="demo.asm";}catch(ex){alert(ex.toString());}
           }
 	    document.getElementById('combtn').onclick= function(event){
-        	try{var contents = filesystem.readFile("demo.asm");
+        	try{var contents = filesystem.readFile("demo.com", {encoding:"binary"});
           blob = new Blob([contents], {type: "octet/stream"}),
           url = window.URL.createObjectURL(blob);
   	      this.href = url;
