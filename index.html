@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head></head>
-<body onhashchange="window.getFile(location.hash.substr(1));"><canvas></canvas>
+<body><canvas></canvas>
 <script type="text/javascript">
 
 var background="byue.mp4";
@@ -166,7 +166,7 @@ fasmd demo.asm
  <canvas id="jsdos" style="display:none"></canvas>
   <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
   <script>
-  	  window.filesystem ={};
+  	  var filesystem ={};
 	  function dl(path){alert(path);}
     Dos(document.getElementById("jsdos"), { 
       wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
@@ -176,19 +176,16 @@ fasmd demo.asm
       fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
         main(["-c", "cwsdpmi", "-c", "fasmd demo.asm"]).then(function (ci) {
           window.ci = ci;
-		window.filesystem=fs.fs;
-	    document.getElementById('asmbtn').onclick= function(event){var path="demo.asm";window.getFile(path);}
+		filesystem=fs.fs;
+	    document.getElementById('asmbtn').onclick= function(event){var path="demo.asm";try{var contents = filesystem.readFile(path, {encoding:"binary"});
+  blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
+  this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
 	    document.getElementById('combtn').onclick= function(event){var path="demo.com";try{var contents = filesystem.readFile(path, {encoding:"binary"});
   blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
   this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
         });
       });
     });
-	  window.getFile = (path) =>{
-		  try{var contents = window.filesystem.readFile(path, {encoding:"binary"});
-  blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
-  this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}
-	  }
   </script>
 
 </body>
