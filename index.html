@@ -144,8 +144,8 @@ var btnsize=window.orientation ? 40:60, clr="#eee",clz="#909090";
 body{color:#d2d5d0;background-color:#202020;font-family: "dft";font-size:14px;}
 node{font-weight:bold;}
 div#download{position: absolute; right: 1em; top: 1em;}
-a {color:#bb2211; font-size:18px;}
-a:visited {color: #881100;}
+a {color:#fff; font-size:18px;}
+a:visited {color: #ddd;}
 div.dosbox-container + button {display:none;}
 </style>
 <div id="download">
@@ -166,8 +166,11 @@ fasmd demo.asm
  <canvas id="jsdos" style="display:none"></canvas>
   <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
   <script>
+  var filesystem ={};
+  function dl(path){try{var contents = filesystem.readFile(path, {encoding:"binary"});
+  blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
+  this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
 	  
-	  var filesystem ={};
     Dos(document.getElementById("jsdos"), { 
       wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
       cycles: "30000",
@@ -177,24 +180,8 @@ fasmd demo.asm
         main(["-c", "cwsdpmi", "-c", "fasmd demo.asm"]).then(function (ci) {
           window.ci = ci;
 		filesystem=fs.fs;
-	    document.getElementById('asmbtn').onclick= function(event){
-        	try{var contents = filesystem.readFile("demo.asm", {encoding:"binary"});
-          blob = new Blob([contents], {type: "octet/stream"}),
-          url = window.URL.createObjectURL(blob);
-  	      this.href = url;
-          this.target = '_blank';
-  	      // target filename
-            this.download="demo.asm";}catch(ex){alert(ex.toString());}
-          }
-	    document.getElementById('combtn').onclick= function(event){
-        	try{var contents = filesystem.readFile("demo.com", {encoding:"binary"});
-          blob = new Blob([contents], {type: "octet/stream"}),
-          url = window.URL.createObjectURL(blob);
-  	      this.href = url;
-          this.target = '_blank';
-  	      // target filename
-            this.download="demo.com";}catch(ex){alert(ex.toString());}
-          }
+	    document.getElementById('asmbtn').onclick= function(event){dl("demo.asm");}
+	    document.getElementById('combtn').onclick= function(event){dl("demo.com");}
         });
       });
     });
