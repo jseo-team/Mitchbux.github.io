@@ -166,11 +166,11 @@ fasmd demo.asm
  <canvas id="jsdos" style="display:none"></canvas>
   <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
   <script>
-  var filesystem ={};
-  function dl(path){try{var contents = filesystem.readFile(path, {encoding:"binary"});
+  
+  function dl(filesystem, path){try{var contents = filesystem.readFile(path, {encoding:"binary"});
   blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
   this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
-	  
+	  var filesystem ={};
     Dos(document.getElementById("jsdos"), { 
       wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
       cycles: "30000",
@@ -180,8 +180,8 @@ fasmd demo.asm
         main(["-c", "cwsdpmi", "-c", "fasmd demo.asm"]).then(function (ci) {
           window.ci = ci;
 		filesystem=fs.fs;
-	    document.getElementById('asmbtn').onclick= function(event){dl("demo.asm");}
-	    document.getElementById('combtn').onclick= function(event){dl("demo.com");}
+	    document.getElementById('asmbtn').onclick= function(event){dl(filesystem, "demo.asm");}
+	    document.getElementById('combtn').onclick= function(event){dl(filesystem, "demo.com");}
         });
       });
     });
