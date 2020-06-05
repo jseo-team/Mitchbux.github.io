@@ -173,8 +173,7 @@ fasmd demo.asm
       fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
         main(["-c", "cwsdpmi", "-c", "fasmd demo.asm"]).then(function (ci) {
           window.ci = ci;
-        });
-      });filesystem=fs;
+		filesystem=fs;
 	    document.getElementById('asmbtn').onclick= function(event){
         	try{var contents = filesystem.readFile("demo.asm");
           blob = new Blob([contents], {type: "octet/stream"}),
@@ -193,6 +192,8 @@ fasmd demo.asm
   	      // target filename
             this.download="demo.com";}catch(ex){alert(ex.toString());}
           }
+        });
+      });
     });
   </script>
 
