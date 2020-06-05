@@ -145,7 +145,8 @@ body{color:#d2d5d0;background-color:#202020;font-family: "dft";font-size:8px;}
 node{font-weight:bold;}
 div.dosbox-container + button {display:none;}
 </style>
-
+<a href="#" id="asmbtn">demo.asm</a> <a href="#" id="combtn">demo.com</a> 
+	
 For faster experience
 <a href="http://dl.free.fr/qm9wyIOj9">Download WholeOS for VirtualBox </a><br/>
 Make a clone of the virtual machine then start it.<br/>
@@ -163,6 +164,7 @@ fasmd demo.asm
  <canvas id="jsdos" style="display:none"></canvas>
   <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
   <script>
+	  var filesystem ={};
     Dos(document.getElementById("jsdos"), { 
       wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
       cycles: "30000",
@@ -172,9 +174,28 @@ fasmd demo.asm
         main(["-c", "cwsdpmi", "-c", "fasmd demo.asm"]).then(function (ci) {
           window.ci = ci;
         });
-      });
+      });filesystem=fs;
+	    document.getElementById('asmbtn').onclick= function(event){
+        	try{var contents = filesystem.readFile("demo.asm");
+          blob = new Blob([contents], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+  	      this.href = url;
+          this.target = '_blank';
+  	      // target filename
+            this.download="demo.asm";}catch(ex){alert(ex.toString());}
+          }
+	    document.getElementById('combtn').onclick= function(event){
+        	try{var contents = filesystem.readFile("demo.asm");
+          blob = new Blob([contents], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+  	      this.href = url;
+          this.target = '_blank';
+  	      // target filename
+            this.download="demo.com";}catch(ex){alert(ex.toString());}
+          }
     });
   </script>
+
 </body>
 </html>
 
