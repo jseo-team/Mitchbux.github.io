@@ -179,7 +179,7 @@ fasmd demo.asm
       autolock: true,
     }).ready(function (fs, main) {
       fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
-        main([ "-c", "demo.com"]).then(function (ci) {
+        main([ "-c", "dir"]).then(function (ci) {
           window.ci = ci;
 		filesystem=fs.fs;
 	    document.getElementById('asmbtn').onclick= function(event){var path="demo.asm";try{var contents = filesystem.readFile(path, {encoding:"binary"});
