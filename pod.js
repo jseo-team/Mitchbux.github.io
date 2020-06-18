@@ -1,24 +1,39 @@
-str 	[message] {
-	This is a sample script from WHOLE.js
-	using pipe to open processes.
-	
-	Thanks for watching :}, 
 
-[doSomething] { return js.pre.first + js.pre.next; } "once :",
+str [msg] {
+    Trying to work with :
 
-module 	[xml] {<${name}>${code}</${name}>},
+},"once :"  
 
-xml 	[go] {text},
+[CurrentDir] { CurrentDir=os.getcwd(); CurrentDir.pop(this); } 
 
-loader 	[pre] { => ${added} ${"\\n"}},
+[getopt] {    
+var opt = stack;
+var c = js.commandLine;
 
-pre	( "This is advanced JavaScript", "The script is run from a virtuial WIN32 environment" ),
+    getopt = (opt.hasOwnProperty(c[0]) ?opt[c[0]](c[1]):opt[""](c[0])); }
 
-filter 	("one", "two", "apple", "three") [numbers] {if (this!="apple") numbers += this + " ";},
+[upload] { upload =  stack + " : toCloud"; }
+
+[downloadFile] { downloadFile = "fromCloud : " + stack; }
+
 
 {
-	console.log(js.pre.toString());
-	console.log(js.doSomething());
-	console.log(js.filter.numbers() + js.xml.go);
-	return js.str.message + ":/" ;
+    var options =  {
+        "": (filename) => {return js.upload(filename);},
+        "-get": (id) => {return js.downloadFile(id);}
+    };
+
+    console.log(js.CurrentDir());
+
+    return js.str.msg + js.getopt(options);
+
+}
+
+[onerror] { return js.str.usage;}
+
+str [usage] {
+usage :    
+    pod {filename}
+    pod -get {id}
+
 }
