@@ -43,7 +43,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
    
 var d=document;var st=d.createElement("style");st.appendChild(d.createTextNode("@font-face{font-family:'nrm';src:local('nrm'),url('"+font+"')format('truetype');}"));cn("12").appendChild(st);
 var tc=d.createElement("canvas");tc.style="display:none";d.body.style="padding:0;margin:0;background-color:#000;color:#fefefe;";d.body.appendChild(tc);
-var bkg=d.createElement("video");src=d.createElement("source");bkg.style="width:1px;height:1px;display:none";bkg.appendChild(src);src.src=background;bkg.loop=true;
+var bkg=d.createElement("audio");src=d.createElement("source");bkg.style="width:1px;height:1px;display:none";bkg.appendChild(src);src.src=background;bkg.loop=true;
 var imz=d.createElement("img");imz.src=poster;imz.style="display:none";
 el=cn("120");d.body.insertBefore(bkg,el);d.body.appendChild(imz); var ht=cn("1"),gl=el.getContext("webgl"),ctx=0;
 var iID = setInterval(drawScene, 40); var lines=40; var index=msgs.length;var minline=lines*0.395;var p=0.0;var cnv={};
@@ -62,7 +62,7 @@ var pass=0;function drawScene() {
 
 if (started==0){ try{ cnv=d.getElementById('jsdos');
 
-teximg(tx[0], tc); teximg(tx[1],bkg);  teximg(tx[2],cnv);
+teximg(tx[0], tc); teximg(tx[1],imz);  teximg(tx[2],cnv);
 
 unitex(tx[0], gl.TEXTURE1, 1, "txt");
 unitex(tx[1], gl.TEXTURE2, 2, "bkg");
@@ -79,7 +79,7 @@ gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
- teximg(tx[0], tc); teximg(tx[1],bkg); teximg(tx[2],cnv); 
+ teximg(tx[0], tc); teximg(tx[1],imz); teximg(tx[2],cnv); 
 	
  unitex(tx[0], gl.TEXTURE1, 1, "txt");
  unitex(tx[1], gl.TEXTURE2, 2, "bkg");
