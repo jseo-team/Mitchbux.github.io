@@ -6,7 +6,7 @@
 var background="territory.mp4";
 var poster="bg_scale.png";
 var msgs =[" Starting ...",];
-var loader= [" ::: / https://is.gd/junelinks / :::", "press [esc] to exit"];
+var loader= [" ::: / https://is.gd/junelinks / :::", "type DEMO", "press [esc] to exit"];
 var font="https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR_g.woff2";
 </script>
 <script type="text/javascript" >
@@ -73,7 +73,7 @@ gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
  
  //when clicked
  else { try{  	if (true){ //messages
-	var outp = ["::: / [fasmd - editor.bat filename] / :::","[F2] SAVE","[F4] LOAD","[F7] SEARCH","[F9] RUN (BUILDs .COM)","[ESC]: Quit the program" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
+	var outp = ["::: /  type [DEMO] or [editor demo.asm] then press [enter] / :::","[F2] SAVE","[F4] LOAD","[F7] SEARCH","[F9] RUN (BUILDs .COM)","[ESC]: Quit the program" ]; if (outp.length>msgs.length){index = outp.length; var audio1=d.getElementById("audio1"); audio1.play();
 	for (var m in outp){if (m==0) msgs[m] = " " + outp[m];else msgs[m] = "  " + (outp[m]);}  
 	ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); try{bkg.play();} catch(e){e.toString();}}}
 	
