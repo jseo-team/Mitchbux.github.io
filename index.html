@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
 var background="loop.mp4";
-var poster="qr-core.png";
+var poster="qr-code.png";
 var msgs =[" Starting ...",];
 var loader= [" ::: /  / :::", "type DEMO", "press [esc] to exit"];
 var font="https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR_g.woff2";
@@ -62,7 +62,7 @@ var pass=0;function drawScene() {
 
 if (started==0){ try{ cnv=d.getElementById('jsdos');
 
-teximg(tx[0], tc); teximg(tx[1],imz);  teximg(tx[2],cnv);
+teximg(tx[0], tc); teximg(tx[1],imz);  teximg(tx[2],bkg);
 
 unitex(tx[0], gl.TEXTURE1, 1, "txt");
 unitex(tx[1], gl.TEXTURE2, 2, "bkg");
@@ -79,7 +79,7 @@ gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
 	
  gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
  gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
- teximg(tx[0], tc); teximg(tx[1],imz); teximg(tx[2],cnv); 
+ teximg(tx[0], tc); teximg(tx[1],imz); teximg(tx[2],bkg); 
 	
  unitex(tx[0], gl.TEXTURE1, 1, "txt");
  unitex(tx[1], gl.TEXTURE2, 2, "bkg");
@@ -167,31 +167,8 @@ fasmd demo.asm
 
 <audio id="audio1" src="oOne.flac"></audio>
 <audio id="audio2" src="oTwo.flac"/></audio>	
-<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+
  <canvas id="jsdos" style="display:none"></canvas>
-  <button style="position: absolute; right: 1em; top: 1em;" onclick="ci.fullscreen()">Fullscreen</button>
-  <script>
-  	  var filesystem ={};
-	  function dl(path){alert(path);}
-    Dos(document.getElementById("jsdos"), { 
-      wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
-      cycles: "40000",
-      autolock: true,
-    }).ready(function (fs, main) {
-      fs.extract("https://mitchbux.github.io/rush.zip").then(function () {
-        main([ "-c", "cls"]).then(function (ci) {
-          window.ci = ci;
-		filesystem=fs.fs;
-	    document.getElementById('asmbtn').onclick= function(event){var path="rush.asm";try{var contents = filesystem.readFile(path, {encoding:"binary"});
-  blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
-  this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
-	    document.getElementById('combtn').onclick= function(event){var path="DEMO.COM";try{var contents = filesystem.readFile(path, {encoding:"binary"});
-  blob = new Blob([contents], {type: "octet/stream"}),url = window.URL.createObjectURL(blob);
-  this.href = url;this.target = '_blank';this.download=path;}catch(ex){alert(ex.toString());}}
-        });
-      });
-    });
-  </script>
 
 </body>
 </html>
