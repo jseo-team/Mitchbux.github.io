@@ -17,11 +17,7 @@ var s=["attribute vec2 a; varying vec2 coord; void main(){gl_Position = vec4(a, 
 " uniform float pindex; uniform float winr; \n" +
 
 "void main() {  vec4 image,text,pixel,window; vec2 i = vec2(coord.x, coord.y); vec2 w;"+
-" if((coord.x*2.0-0.5)<0.0){w=vec2(0.0,0.0); window = vec4(0.0,0.0,0.0,0.0);} else "+
-" if((coord.y*2.0)-0.5<0.0){w=vec2(0.0,0.0); window = vec4(0.0,0.0,0.0,0.0);} else "+       
-" if((coord.x*2.0-0.5)>1.0){w=vec2(0.0,0.0); window = vec4(0.0,0.0,0.0,0.0);} else "+
-" if((coord.y*2.0)-0.5>1.0){w=vec2(0.0,0.0); window = vec4(0.0,0.0,0.0,0.0);} else "+       
- " { w=vec2(coord.x*2.0-0.5,(coord.y*2.0)-0.5); window=texture2D(cnv,w); }"+
+ "  w=vec2(coord.x,coord.y); window=texture2D(cnv,w); "+
 " if (winr<1.)image=texture2D(bkg,w); else image=texture2D(bkg,vec2(i.x/winr,i.y)); text=texture2D(txt,i); "+
 //text effects
 "vec4 emboss=0.0- texture2D(txt,vec2(coord.x+0.0016,coord.y+0.0016))*0.1"+
@@ -89,56 +85,15 @@ gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
 
 // APPLICATION	
 
-var app = () =>  { var audio2=d.getElementById("audio2"); audio2.play();
- started = 1; cnv=d.getElementById('jsdos'); ctx = tc.getContext("2d"); ctx.fillStyle="#9b9b9b";ctx.fillRect(0,0,el.width,el.height);widgets(ctx); bkg.play();
-el.ontouchstart = function(e){ cnv=d.getElementById('canvas'); if (e.changedTouches)e.preventDefault();
-ix=((e.changedTouches[0].pageY/el.height)*lines)>>0;
-if (ix<=msgs.length)index = ix; if (index<1)index=1;  rsz();};
-el.onclick = function(e){ix=(((e.pageY/el.height)*lines)>>0)-2;if (ix<=msgs.length)index=ix;if (index<1)index=1; rsz();};}
-
+var app = () =>  { var audio2=d.getElementById("audio2"); audio2.play();widgets(ctx); bkg.play(); rsz();};
+	
    // LOADER
    el.ontouchstart = app;
    el.onclick = app;     
-   
-   /*strmouse = ["mousemove", "mousedown", "mouseup", "click"];
-   for(var n in strmouse)
-el.addEventListener(strmouse[n] , (e)=>{cnv=d.getElementById('canvas');
-evt = document.createEvent("MouseEvents");
-  evt.initMouseEvent(strmouse[n], true, true, window,
-    0,0,0, (e.clientX/el.width)*cnv.width, (e.clientY/el.height)*cnv.height, false, false, false, false, 0, null);
-  cnv.dispatchEvent(evt); });*/
-   
+      
 function widgets(ctx){var fsize=el.height/lines;
 try{
-//list
-var ty=1.5;
-
-if (started==0){
-  for (var m in loader){drawText(loader[m], fsize, "nrm","#cecece",30,ty++*(fsize)); if (ty==1.5)ty=2.;}
-}else{                  
-		if (msgs.length > 50) msgs = msgs.slice(msgs.length-50);
-		for(var m in msgs)
-		drawText(msgs[m], fsize, "nrm","#eee",30,ty++*(fsize)); if (ty==1.5)ty=2.;
-		
-}
-//label
-var ttle=window.orientation ? 10 : 15;
-var subt=window.orientation ? 5  : 8;
-  ctx.beginPath();  ctx.strokeStyle="#eee";  ctx.lineWidth=1;
-  ctx.moveTo(0,el.height*0.73);ctx.lineTo(el.width,el.height*0.73);
-  ctx.closePath();  ctx.stroke();
-  drawText("Whole (32 bits)",ttle , "nrm", "#3e3e3e", 10, tc.height*0.72-ttle);
-if(started)
-  drawText(msgs[index-1].substring(1), subt, "nrm", "#eee", 20, tc.height*0.735);
-//media keys
-var btnsize=window.orientation ? 40:60, clr="#eee",clz="#909090";
-
-  //right
-//  drawCircle(btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(btnsize*2,0,btnsize,clz);
-  //left
-//  drawCircle(0-btnsize*2,0,btnsize+btnsize/10,clr);drawCircle(0-btnsize*2,0,btnsize,clz);
-  //center
-//  drawCircle(0,0,btnsize*1.3+btnsize/10,clr);drawCircle(0,0,btnsize*1.3,clz);
+	ctx.drawImage(image, 0,0,780,640,780,640);
 }catch(e){e.toString();}
 }
 
@@ -154,7 +109,9 @@ div.dosbox-container + button {display:none;}
 </style>
 <div id="download">
 	 :: <a href="http://tiny.cc/csdget">csd</a> :: <a href="#RUSH.ASM" id="asmbtn">rush.asm</a> :: <a href="#DEMO.COM" id="combtn">rush.com</a> ::
-</div>	
+</div>
+ <img id="source" src="https://screenshot-kit-r50xkn0t9.now.sh/screenshot?url=http://mitchbux.github.io/html.html&width=780&height=640"
+       width="780" height="640">	
 <b>For faster experience</b><br/>
 <!-- Download :::/ <a href="http://dl.free.fr/qm9wyIOj9">WholeOS</a> /::: for VirtualBox <br/> -->
 Download :::/ <a href="http://dl.free.fr/hb3VhzT2a">WholeOS</a> /::: for VirtualBox <br/>
