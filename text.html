@@ -27,8 +27,7 @@ root xml
 
 
 # loader json example
-hello loader [json]{${js.hello.JSON(loadFile(added))}},
-hello json ("file.json"),
+hello { return js.JSON(this.load.first);} load("file.json"),
 
 
 # -- and stack mash up everything
