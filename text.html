@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<style>
+@font-face{font-family:'dft';src: url("https://fonts.gstatic.com/s/jura/v14/z7NOdRfiaC4Vd8hhoPzfb5vBTP266pumR_g.woff2");}
+body{color:#e0e0e0;background-color:#202020;font-family: "dft";font-size:50px;}
+node{font-weight:bold;}
+</style>
+<body>
+<script type="won">
+	'script',
+hello world ('hello' 'world' [greet] {greet+='::'+this;},
+    {return this.greet();}
+),
+
+{return this.join("") + js.hello.world; },
+
+</script>
+<script type="won">
+# module xml example
+
+module [xml] {<${name}>${code}</${name}>},
+
+# Create XML Nodes --
+root xml
+[head] {title}
+[node] {<br/> Generated html bold text} # comment/uncomment to see the result
+[unused] {nc},
+
+
+# loader json example
+hello loader [json]{${js.hello.JSON(loadFile(added))}},
+hello json ("file.json"),
+
+
+# -- and stack mash up everything
+root xml {return js.hello.world + (this.node? this.node: "<br/>node-not-found"); },
+str [toc] {JSON::XML::},
+
+## Global stack
+{return js.str.toc + js.root.xml ; }
+
+</script>
+
+<script id="file.json" type="json">
+{
+world : "hello world"
+}
+</script>
+
+
+<script src = "JFvXDK.js"></script>
+</body>
