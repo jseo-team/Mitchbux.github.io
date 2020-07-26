@@ -56,27 +56,20 @@ function unitex(tex, id, i, uni) {gl.activeTexture(id);gl.bindTexture(gl.TEXTURE
 var started = 0;var tx=[gl.createTexture(), gl.createTexture(), gl.createTexture()];for(var t in tx)tprm(tx[t]);
 var pass=0;function drawScene() {
 
-if (started==0){ try{ cnv=d.getElementById('jsdos');
-
-teximg(tx[0], tc); teximg(tx[1],imz);  teximg(tx[2],bkg);
-
-unitex(tx[0], gl.TEXTURE1, 1, "txt");
-unitex(tx[1], gl.TEXTURE2, 2, "bkg");
-unitex(tx[2], gl.TEXTURE3, 3, "cnv");
-
-gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); } catch(e){console.log(e);}}
+try{ 
 	
-else{
-	
- gl.uniform1f(gl.getUniformLocation(glpr, "pindex"), lines-index-1.5);
- gl.uniform1f(gl.getUniformLocation(glpr, "winr"), (el.height/el.width));
- teximg(tx[0], tc); teximg(tx[1],imz); teximg(tx[2],bkg); 
-	
- unitex(tx[0], gl.TEXTURE1, 1, "txt");
- unitex(tx[1], gl.TEXTURE2, 2, "bkg");
- unitex(tx[2], gl.TEXTURE3, 3, "cnv");
- 
- gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}catch(e){console.log(e);} }}
+
+	teximg(tx[0], tc); 
+	teximg(tx[1],imz);  
+	teximg(tx[2],bkg);
+
+	unitex(tx[0], gl.TEXTURE1, 1, "txt");
+	unitex(tx[1], gl.TEXTURE2, 2, "bkg");
+	unitex(tx[2], gl.TEXTURE3, 3, "cnv");
+
+	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); 
+
+} catch(e){console.log(e);}
 
 // APPLICATION	
 
